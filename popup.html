@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ML Cart Organizer</title>
+  <style>
+    :root {
+      --primary: #3483fa;
+      --primary-hover: #2968c8;
+      --ml-yellow: #ffe600;
+      --bg: #f7f7f7;
+      --card-bg: #ffffff;
+      --text: #333333;
+      --text-muted: #777777;
+      --border: #e6e6e6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      width: 330px;
+      background: var(--bg);
+      color: var(--text);
+      padding: 16px;
+      font-size: 13px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .toggle-text {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      min-width: 44px;
+    }
+
+    .toggle-text.active {
+      color: #008744;
+    }
+
+    .toggle-text.inactive {
+      color: #d93838;
+    }
+
+    /* Toggle Switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 36px;
+      height: 20px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.2s;
+      border-radius: 20px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.2s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #008744;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(16px);
+    }
+
+    .disabled-banner {
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      color: #856404;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .header-icon {
+      background: var(--ml-yellow);
+      font-size: 18px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .header-info h1 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .header-info p {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .card-title {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .stat-box {
+      flex: 1;
+      background: #fdfdfd;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+      max-height: 120px;
+      overflow-y: auto;
+    }
+
+    .tag-item {
+      background: #eef5ff;
+      color: var(--primary);
+      border: 1px solid #cce3fd;
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag-item .delete-tag {
+      cursor: pointer;
+      opacity: 0.6;
+      font-weight: bold;
+    }
+
+    .tag-item .delete-tag:hover {
+      opacity: 1;
+      color: #d93838;
+    }
+
+    .add-tag-form {
+      display: flex;
+      gap: 6px;
+    }
+
+    .input-text {
+      flex: 1;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .input-text:focus {
+      border-color: var(--primary);
+    }
+
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background: #f0f0f0;
+      color: #333;
+      border: 1px solid #ccc;
+    }
+
+    .btn-secondary:hover {
+      background: #e4e4e4;
+    }
+
+    .btn-danger {
+      background: #ffeded;
+      color: #d93838;
+      border: 1px solid #f9cccc;
+    }
+
+    .btn-danger:hover {
+      background: #ffd8d8;
+    }
+
+    .actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .actions-grid .btn {
+      width: 100%;
+      text-align: center;
+      padding: 7px;
+    }
+
+    .footer {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.4;
+      margin-top: 6px;
+    }
+
+    .footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-left">
+      <div class="header-icon">🛒</div>
+      <div class="header-info">
+        <h1>ML Cart Organizer</h1>
+        <p>Organize suas compras com tags</p>
+      </div>
+    </div>
+    <div class="header-toggle">
+      <label class="switch" title="Ativar ou desativar o organizador no carrinho">
+        <input type="checkbox" id="extension-toggle" checked />
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-text active" id="toggle-status-text">Ativo</span>
+    </div>
+  </div>
+
+  <div id="disabled-banner" class="disabled-banner" style="display: none;">
+    ⚠️ O organizador está desativado no carrinho. Ative no switch acima para voltar a filtrar suas listas.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Resumo do Carrinho</div>
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-number" id="stat-items">0</div>
+        <div class="stat-label">Itens no Carrinho</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" id="stat-tags">0</div>
+        <div class="stat-label">Tags Criadas</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" id="stat-price-drops">0</div>
+        <div class="stat-label">Quedas de Preço</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Gerenciar Tags</div>
+    <div class="tags-container" id="tags-list">
+      <!-- Injected via JavaScript -->
+    </div>
+    <div class="add-tag-form">
+      <input type="text" id="new-tag-input" class="input-text" placeholder="Nome da tag (ex: Casa)..." />
+      <button id="btn-add-tag" class="btn">Adicionar</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Backup & Dados</div>
+    <div class="actions-grid">
+      <button id="btn-export" class="btn btn-secondary">💾 Exportar JSON</button>
+      <button id="btn-import" class="btn btn-secondary">📂 Importar JSON</button>
+      <button id="btn-reset-prices" class="btn btn-danger" style="grid-column: span 2; margin-top: 4px;">🔄 Resetar Histórico de Preços</button>
+    </div>
+    <input type="file" id="file-import" accept=".json" style="display: none;" />
+  </div>
+
+  <div class="footer">
+    Acesse seu carrinho em <a href="https://www.mercadolivre.com.br/gz/cart" target="_blank">mercadolivre.com.br</a> para filtrar suas listas!
+  </div>
+
+  <script type="module" src="./src/popup/index.ts"></script>
+</body>
+</html>

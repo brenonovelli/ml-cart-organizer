@@ -1,0 +1,37 @@
+{
+  "name": "ml-cart-organizer",
+  "version": "1.0.0",
+  "description": "Extensão open-source para organizar e filtrar o carrinho do Mercado Livre com tags, seleção dinâmica e monitoramento de preços.",
+  "type": "module",
+  "author": "Breno Novelli",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brenonovelli/ml-cart-organizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brenonovelli/ml-cart-organizer/issues"
+  },
+  "homepage": "https://github.com/brenonovelli/ml-cart-organizer#readme",
+  "keywords": [
+    "chrome-extension",
+    "brave-extension",
+    "mercado-livre",
+    "ecommerce",
+    "cart-organizer",
+    "price-tracker",
+    "tags",
+    "manifest-v3",
+    "open-source"
+  ],
+  "scripts": {
+    "build": "tsc && node scripts/build.js",
+    "dev": "tsc && node scripts/build.js"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.280",
+    "@types/node": "^22.10.1",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3"
+  }
+}
