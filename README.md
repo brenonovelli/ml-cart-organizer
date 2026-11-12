@@ -45,6 +45,19 @@ O Mercado Livre não oferece agrupamento ou filtros personalizados no carrinho d
 
 ---
 
+## 🛡️ Premissas e Princípios Éticos
+
+O **ML Cart Organizer** foi construído sob princípios inegociáveis de respeito à comunidade, criadores de conteúdo e usuários:
+
+1. **Zero Sequestro de Afiliados (Anti-Hijacking):** Jamais alteramos, injetamos ou substituímos parâmetros de afiliados (`matt_tool`, `tracking_id`, queries ou cookies). Se você adicionou produtos por indicação de um canal de ofertas, criador de conteúdo ou grupo, a atribuição pertence 100% a eles.
+2. **Escopo Restrito ao Carrinho:** A extensão atua única e exclusivamente na página do carrinho. Nunca acessamos telas de checkout, pagamento, endereço, CPF ou dados bancários.
+3. **100% Client-Side & Sem Rastreamento:** Todo o processamento, tags e histórico de preços ficam salvos exclusivamente no seu navegador (`chrome.storage.local`). Sem telemetria, sem analytics e sem envio de dados para servidores externos.
+4. **Sem Interferência na Compra:** A extensão organiza visualmente seus produtos e calcula subtotais para planejamento; ela jamais manipula o preço oficial cobrado pelo Mercado Livre nem impede a conclusão de um pedido.
+
+📄 Consulte o documento completo em [**PREMISSAS.md**](PREMISSAS.md).
+
+---
+
 ## 🚀 Como Instalar no Navegador
 
 Você pode instalar a extensão de duas formas: de maneira super simples (sem precisar de nenhum conhecimento técnico) ou compilando você mesmo pelo código-fonte.

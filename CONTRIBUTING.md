@@ -42,6 +42,7 @@ Este é um projeto de código aberto desenvolvido para a comunidade e toda ajuda
 
 ## 📐 Padrões de Código e Arquitetura
 
+- **Conformidade Obrigatória com as Premissas:** Todo código deve respeitar integralmente os princípios de [PREMISSAS.md](PREMISSAS.md) (zero adulteração de afiliados, 100% client-side, escopo restrito ao carrinho).
 - **TypeScript Estrito:** Mantenha os tipos bem definidos em `src/types/index.ts`. Evite uso de `any`.
 - **Privacidade em Primeiro Lugar:** Todos os dados do usuário (tags, preços monitorados, configurações) são armazenados **exclusivamente localmente** via `chrome.storage.local`. Nunca adicione telemetria, analytics ou rastreamento remoto.
 - **Respeito ao Layout Nativo:** A extensão deve se integrar de forma limpa e não destrutiva à interface do Mercado Livre:

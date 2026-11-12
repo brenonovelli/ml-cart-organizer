@@ -38,5 +38,7 @@ Descreva o passo a passo para que os mantenedores possam reproduzir e testar:
 - [ ] O código foi compilado localmente com sucesso via `npm run build` sem erros de TypeScript.
 - [ ] A extensão foi testada na página real do carrinho do Mercado Livre.
 - [ ] Não afeta negativamente o comportamento nativo dos botões/checkboxes do Mercado Livre.
-- [ ] **Privacidade preservada:** Nenhum dado do usuário é enviado para servidores externos ou serviços de telemetria.
+- [ ] **Premissas respeitadas:** O código está em total conformidade com [PREMISSAS.md](PREMISSAS.md).
+- [ ] **Integridade de afiliados preservada:** Nenhum link, tag ou parâmetro de afiliado foi alterado ou injetado.
+- [ ] **Privacidade preservada:** Nenhum dado do usuário é enviado para servidores externos ou serviços de telemetria (100% client-side).
 - [ ] Nenhum arquivo temporário ou desnecessário foi incluído no commit.

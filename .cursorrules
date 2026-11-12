@@ -1,0 +1,9 @@
+# ML Cart Organizer - Core Principles & AI Instructions
+
+Before writing any code or preparing releases, ensure strict adherence to:
+1. NO AFFILIATE HIJACKING: Never alter, inject, strip, or replace affiliate params (matt_tool, tracking_id, etc.).
+2. CART-ONLY SCOPE: Only run on cart URLs (/cart, /gz/cart). Never touch checkout, PDP, or payment screens.
+3. 100% CLIENT-SIDE & ZERO TELEMETRY: No external fetch/analytics. All persistence in chrome.storage.local.
+4. MINIMUM PERMISSIONS: Keep manifest permissions minimal ("storage" only).
+5. FAIL-SAFE DOM: Ensure graceful degradation and native DOM restoration on disable.
+See PREMISSAS.md for full details.
