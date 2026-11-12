@@ -15,13 +15,13 @@ O Mercado Livre não oferece agrupamento ou filtros personalizados no carrinho d
 
 ### 🏷️ 1. Organização por Tags
 - Atribua uma ou mais etiquetas a qualquer produto diretamente no seu card (ex: `Oficina`, `Cozinha`, `Presentes`, `Materiais`).
-- Barra de navegação intuitiva no topo do carrinho com contadores de itens em tempo real em ordem alfabética.
-- Filtre produtos instantaneamente com um clique. Itens e vendedores que não pertencem à lista ativa são ocultados de forma limpa.
+- Barra de navegação intuitiva no topo do carrinho com contadores de itens em tempo real organizados em ordem alfabética.
+- Filtre produtos instantaneamente com um clique. Itens e blocos de vendedores que não pertencem à lista ativa são ocultados de forma limpa.
 
 ### ☑️ 2. Filtro de Produtos "Selecionados"
 - Visualize de imediato **apenas os itens marcados** no carrinho.
-- Evita ter que rolar dezenas de itens para conferir o que você realmente selecionou para comprar.
-- Subtotal e contadores atualizados em tempo real conforme você marca ou desmarca os checkboxes.
+- Evita ter que rolar dezenas de itens para conferir o que você realmente selecionou para comprar agora.
+- Subtotal e contadores atualizados em tempo real conforme você marca ou desmarca os checkboxes dos produtos.
 
 ### 💵 3. Subtotal Dinâmico
 - Exibe o valor total e quantidade de itens calculados especificamente para a tag ou filtro ativo no momento.
@@ -40,49 +40,105 @@ O Mercado Livre não oferece agrupamento ou filtros personalizados no carrinho d
 
 ### 🔒 6. Privacidade Total e Backup
 - **100% Local**: Nenhum dado sai do seu computador. Não há servidores externos, APIs de terceiros ou telemetria.
-- Armazenamento em `chrome.storage.local`.
-- Popup com opção de **Exportar JSON** e **Importar JSON** para manter seus dados seguros e transferir entre computadores.
+- Armazenamento seguro via `chrome.storage.local`.
+- Popup com opção de **Exportar JSON** e **Importar JSON** para manter seus dados seguros e transferir entre navegadores.
 
 ---
 
-## 🚀 Como Instalar
+## 🚀 Como Instalar no Navegador
 
-Como a extensão é open-source e está em constante evolução, você pode instalá-la facilmente no modo desenvolvedor:
+Você pode instalar a extensão de duas formas: de maneira super simples (sem precisar de nenhum conhecimento técnico) ou compilando você mesmo pelo código-fonte.
 
-1. **Baixe ou clone este repositório:**
+### 🟢 Método 1: Instalação Rápida (Para qualquer pessoa / Sem programar)
+
+> Ideal para quem só quer usar a extensão no dia a dia. Você não precisa instalar Node.js nem abrir terminal!
+
+1. **Baixe o arquivo da extensão:**
+   - Acesse a página de [Releases](https://github.com/brenonovelli/ml-cart-organizer/releases) do repositório.
+   - Baixe o arquivo **`ml-cart-organizer.zip`** da versão mais recente.
+   - *(Ou, na página inicial do repositório, clique no botão verde `<> Code` no topo e escolha **Download ZIP**).*
+2. **Descompacte a pasta no seu computador:**
+   - Dê um clique duplo (no Mac) ou clique com o botão direito e selecione **"Extrair Tudo"** (no Windows).
+   - Guarde a pasta descompactada em um local seguro (por exemplo, na sua pasta de `Documentos`).
+3. **Abra a tela de extensões do seu navegador:**
+   - **Google Chrome:** digite `chrome://extensions` na barra de endereços e dê Enter.
+   - **Brave Browser:** digite `brave://extensions` na barra de endereços e dê Enter.
+   - **Microsoft Edge:** digite `edge://extensions` na barra de endereços e dê Enter.
+4. **Ative o "Modo do desenvolvedor":**
+   - No canto superior direito da página de extensões, ative a chavinha **"Modo do desenvolvedor"** (Developer mode).
+5. **Carregue a extensão:**
+   - Clique no botão **"Carregar sem compactação"** (ou *"Load unpacked"* no canto superior esquerdo).
+   - Na janela que se abrir, selecione a pasta da extensão descompactada (a pasta que contém o arquivo `manifest.json`, ou a pasta `dist`).
+6. **Pronto! 🎉**
+   - Abra o carrinho do Mercado Livre em [mercadolivre.com.br/gz/cart](https://www.mercadolivre.com.br/gz/cart).
+   - O painel de tags e o filtro de selecionados já estarão disponíveis no topo do carrinho!
+
+---
+
+### 💻 Método 2: Instalação para Desenvolvedores (Via Terminal)
+
+Para quem deseja contribuir ou compilar o código manualmente:
+
+1. **Clone o repositório:**
    ```bash
    git clone https://github.com/brenonovelli/ml-cart-organizer.git
    cd ml-cart-organizer
    ```
 
-2. **Instale as dependências e faça o build:**
+2. **Instale as dependências e compile:**
    ```bash
    npm install
    npm run build
    ```
-   *(Isso criará a pasta `dist/` com todos os arquivos prontos para o navegador).*
+   *(Isso executará o TypeScript e o empacotador Vite, gerando os artefatos finais na pasta `dist/`).*
 
-3. **Carregue a extensão no navegador:**
-   - No Chrome: acesse `chrome://extensions`
-   - No Brave: acesse `brave://extensions`
-   - No Edge: acesse `edge://extensions`
-4. Ative a opção **Modo do desenvolvedor** (Developer mode) no canto superior direito.
-5. Clique no botão **Carregar sem compactação** (*Load unpacked*).
-6. Selecione a pasta **`dist`** dentro do projeto.
-7. Acesse seu carrinho em [mercadolivre.com.br/gz/cart](https://www.mercadolivre.com.br/gz/cart) e aproveite!
+3. **Carregue no navegador:**
+   - Acesse `chrome://extensions` ou `brave://extensions`.
+   - Ative o **Modo do desenvolvedor**.
+   - Clique em **Carregar sem compactação** e selecione a pasta **`dist`**.
+
+---
+
+## 📋 Padrão de Pull Requests (PRs)
+
+Adoramos contribuições da comunidade! Para que as revisões sejam rápidas e o código se mantenha consistente, pedimos que todos os Pull Requests sigam estas boas práticas:
+
+### 1. Formato do Título do PR
+Utilizamos o padrão [Conventional Commits](https://www.conventionalcommits.org/):
+- `feat(escopo): descrição da nova funcionalidade`
+- `fix(escopo): descrição da correção de bug`
+- `docs: melhorias na documentação ou README`
+- `style: ajustes de CSS, tipografia ou espaçamentos`
+- `refactor: refatoração interna sem alteração de comportamento`
+
+**Exemplos reais:**
+- `feat(toolbar): adiciona botão para exibir apenas produtos selecionados`
+- `fix(preço): corrige captura de valores com centavos separados`
+- `docs(readme): adiciona instruções de instalação para iniciantes`
+
+### 2. Conteúdo e Checklist da PR
+Ao abrir seu Pull Request, o formulário automático solicitará:
+- **Descrição Clara:** O que foi alterado e qual o benefício.
+- **Antes & Depois (Screenshots / Vídeos):** Obrigatório para qualquer alteração na interface do carrinho.
+- **Instruções de Teste:** Passo a passo para reproduzir e validar o teste no carrinho real.
+- **Validação Local:** Garantir que o comando `npm run build` executa sem erros de TypeScript antes do envio.
+- **Privacidade Preservada:** Todos os dados devem permanecer 100% locais no navegador do usuário.
+
+Para mais detalhes sobre como configurar seu ambiente de desenvolvimento, confira o [Guia de Contribuição](CONTRIBUTING.md).
 
 ---
 
 ## 🛠️ Tecnologias e Arquitetura
 
-- **Manifest V3:** Arquitetura moderna de extensões Chromium.
-- **TypeScript:** Tipagem estática rigorosa para garantir estabilidade e manutenibilidade.
-- **Vite:** Compilação ultra-rápida do popup e do background service worker.
-- **Content Script Bundle:** Empacotamento IIFE autocontido para isolamento seguro do script de conteúdo na página do Mercado Livre.
+- **Manifest V3:** Padrão moderno e seguro para extensões Chromium.
+- **TypeScript:** Tipagem estática rigorosa para estabilidade e manutenibilidade.
+- **Vite:** Compilação veloz do popup e do background service worker.
+- **Content Script Bundle:** Empacotamento IIFE autocontido para isolamento seguro na página do Mercado Livre.
 - **MutationObserver + DOM Resiliente:** Monitoramento reativo das mudanças de página e re-renderização suave sem quebrar a experiência do usuário.
 
 ```
 ml-cart-organizer/
+├── .github/                # Workflows do CI, release automática e templates de PR/Issue
 ├── public/                 # Manifest.json e ícones da extensão
 ├── src/
 │   ├── background/         # Service worker Manifest V3
@@ -96,16 +152,6 @@ ml-cart-organizer/
 ├── scripts/                # Script de compilação customizado
 └── dist/                   # Artefatos prontos gerados pelo build
 ```
-
----
-
-## 🤝 Como Contribuir
-
-Contribuições são muito bem-vindas! Se você encontrou algum bug ou tem uma ideia para tornar o carrinho ainda melhor:
-
-1. Dê uma olhada nas [Issues abertas](https://github.com/brenonovelli/ml-cart-organizer/issues).
-2. Leia nosso [Guia de Contribuição](CONTRIBUTING.md).
-3. Abra um Pull Request com suas melhorias.
 
 ---
 
